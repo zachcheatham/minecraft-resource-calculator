@@ -1,0 +1,8 @@
+*.pyc
+*.pyo
+recipes.json
+start_windows.bat
+dist/
+build.bat
+build/
+*.spec

@@ -1,0 +1,91 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'recipe_dialog.ui'
+#
+# Created by: PyQt5 UI code generator 5.7
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_recipeDialog(object):
+    def setupUi(self, recipeDialog):
+        recipeDialog.setObjectName("recipeDialog")
+        recipeDialog.setWindowModality(QtCore.Qt.WindowModal)
+        recipeDialog.resize(370, 320)
+        recipeDialog.setMinimumSize(QtCore.QSize(370, 229))
+        recipeDialog.setModal(True)
+        self.verticalLayout = QtWidgets.QVBoxLayout(recipeDialog)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.titleLabel = QtWidgets.QLabel(recipeDialog)
+        self.titleLabel.setObjectName("titleLabel")
+        self.verticalLayout.addWidget(self.titleLabel)
+        self.ingredientsGroupBox = QtWidgets.QGroupBox(recipeDialog)
+        self.ingredientsGroupBox.setObjectName("ingredientsGroupBox")
+        self.gridLayout = QtWidgets.QGridLayout(self.ingredientsGroupBox)
+        self.gridLayout.setObjectName("gridLayout")
+        self.itemNameLineEdit = QtWidgets.QLineEdit(self.ingredientsGroupBox)
+        self.itemNameLineEdit.setObjectName("itemNameLineEdit")
+        self.gridLayout.addWidget(self.itemNameLineEdit, 0, 1, 1, 1)
+        self.itemNameLabel = QtWidgets.QLabel(self.ingredientsGroupBox)
+        self.itemNameLabel.setObjectName("itemNameLabel")
+        self.gridLayout.addWidget(self.itemNameLabel, 0, 0, 1, 1)
+        self.quantityLabel = QtWidgets.QLabel(self.ingredientsGroupBox)
+        self.quantityLabel.setObjectName("quantityLabel")
+        self.gridLayout.addWidget(self.quantityLabel, 0, 2, 1, 1)
+        self.quantitySpinBox = QtWidgets.QSpinBox(self.ingredientsGroupBox)
+        self.quantitySpinBox.setMinimum(1)
+        self.quantitySpinBox.setMaximum(1000000000)
+        self.quantitySpinBox.setObjectName("quantitySpinBox")
+        self.gridLayout.addWidget(self.quantitySpinBox, 0, 3, 1, 1)
+        self.addRemoveLayout = QtWidgets.QHBoxLayout()
+        self.addRemoveLayout.setObjectName("addRemoveLayout")
+        self.addButton = QtWidgets.QPushButton(self.ingredientsGroupBox)
+        self.addButton.setEnabled(False)
+        self.addButton.setObjectName("addButton")
+        self.addRemoveLayout.addWidget(self.addButton)
+        self.removeButton = QtWidgets.QPushButton(self.ingredientsGroupBox)
+        self.removeButton.setEnabled(False)
+        self.removeButton.setObjectName("removeButton")
+        self.addRemoveLayout.addWidget(self.removeButton)
+        self.gridLayout.addLayout(self.addRemoveLayout, 2, 0, 1, 4)
+        self.ingredientTable = QtWidgets.QTreeView(self.ingredientsGroupBox)
+        self.ingredientTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.ingredientTable.setObjectName("ingredientTable")
+        self.gridLayout.addWidget(self.ingredientTable, 5, 0, 1, 4)
+        self.verticalLayout.addWidget(self.ingredientsGroupBox)
+        self.bottomControlsLayout = QtWidgets.QHBoxLayout()
+        self.bottomControlsLayout.setObjectName("bottomControlsLayout")
+        self.quantityProducedLayout = QtWidgets.QFormLayout()
+        self.quantityProducedLayout.setObjectName("quantityProducedLayout")
+        self.quantityProducedLabel = QtWidgets.QLabel(recipeDialog)
+        self.quantityProducedLabel.setObjectName("quantityProducedLabel")
+        self.quantityProducedLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.quantityProducedLabel)
+        self.quantityProducedSpinBox = QtWidgets.QSpinBox(recipeDialog)
+        self.quantityProducedSpinBox.setEnabled(False)
+        self.quantityProducedSpinBox.setMinimum(1)
+        self.quantityProducedSpinBox.setMaximum(100000)
+        self.quantityProducedSpinBox.setObjectName("quantityProducedSpinBox")
+        self.quantityProducedLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.quantityProducedSpinBox)
+        self.bottomControlsLayout.addLayout(self.quantityProducedLayout)
+        self.doneButton = QtWidgets.QPushButton(recipeDialog)
+        self.doneButton.setEnabled(True)
+        self.doneButton.setObjectName("doneButton")
+        self.bottomControlsLayout.addWidget(self.doneButton, 0, QtCore.Qt.AlignRight)
+        self.verticalLayout.addLayout(self.bottomControlsLayout)
+
+        self.retranslateUi(recipeDialog)
+        QtCore.QMetaObject.connectSlotsByName(recipeDialog)
+
+    def retranslateUi(self, recipeDialog):
+        _translate = QtCore.QCoreApplication.translate
+        recipeDialog.setWindowTitle(_translate("recipeDialog", "Recipe Input"))
+        self.titleLabel.setText(_translate("recipeDialog", "Please tell me how to make \"{}\""))
+        self.ingredientsGroupBox.setTitle(_translate("recipeDialog", "Ingredients"))
+        self.itemNameLabel.setText(_translate("recipeDialog", "Item Name"))
+        self.quantityLabel.setText(_translate("recipeDialog", "Quantity"))
+        self.addButton.setText(_translate("recipeDialog", "Add"))
+        self.removeButton.setText(_translate("recipeDialog", "Remove"))
+        self.quantityProducedLabel.setText(_translate("recipeDialog", "Quantity Produced"))
+        self.doneButton.setText(_translate("recipeDialog", "Raw Material"))
+
