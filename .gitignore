@@ -6,3 +6,4 @@ dist/
 build.bat
 build/
 *.spec
+python/app_cli.py
