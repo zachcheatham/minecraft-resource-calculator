@@ -71,9 +71,15 @@ class NewCraftDialog(Gtk.Window):
         item_name = self.item_name_entry.get_text()
         if recipes.have_missing(item_name):
             recipe_dialog = RecipeDialog(item_name, self)
+            recipe_dialog.connect("hide", self.recipe_dialog_hide)
             recipe_dialog.show_all()
         else:
             self.open_craft()
 
     def close_button_clicked(self, button):
         self.close()
+
+    def recipe_dialog_hide(self, widget):
+        item_name = self.item_name_entry.get_text()
+        if not recipes.have_missing(item_name):
+            self.open_craft()
