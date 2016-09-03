@@ -8,6 +8,7 @@ class RecipeDialog(Gtk.Dialog):
     def __init__(self, item_name, parent):
         super(RecipeDialog, self).__init__(title="Recipe Input", parent=parent)
 
+        self.set_wmclass("Minecraft Resource Calculator", "Minecraft Resource Calculator")
         self.set_modal(True)
         self.title_label_format = "Please tell me how to make \"{}\""
 

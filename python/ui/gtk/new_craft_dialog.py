@@ -6,6 +6,7 @@ from ui.gtk.recipe_dialog import RecipeDialog
 class NewCraftDialog(Gtk.Window):
     def __init__(self):
         super(NewCraftDialog, self).__init__(title="New Craft Calculation")
+        self.set_wmclass("Minecraft Resource Calculator", "Minecraft Resource Calculator")
         self.set_default_size(350, -1)
         self.set_resizable(False)
 
