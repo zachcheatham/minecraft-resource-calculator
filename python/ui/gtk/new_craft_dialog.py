@@ -68,7 +68,18 @@ class NewCraftDialog(Gtk.Window):
         h_box.pack_end(button_box, False, False, 0)
 
     def open_craft(self):
-        print ("We're good to open a craft!")
+        craft_window = self.get_transient_for()
+        if craft_window == None:
+            craft_window = MainWindow()
+            craft_window.show_all()
+
+        item_name = self.item_name_entry.get_text()
+        quantity = int(self.quantity_spin_button.get_value())
+        craft_window.set_craft_item(item_name, quantity)
+
+        if self.delete_event_handler != None:
+            self.disconnect(self.delete_event_handler)
+        self.close()
 
     def item_name_entry_changed(self, editable):
         if len(self.item_name_entry.get_text()) > 0:
