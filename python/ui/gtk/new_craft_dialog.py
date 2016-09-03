@@ -2,10 +2,19 @@ from gi.repository import Gtk
 
 import recipes
 from ui.gtk.recipe_dialog import RecipeDialog
+from ui.gtk.main_window import MainWindow
 
 class NewCraftDialog(Gtk.Window):
-    def __init__(self):
+    def __init__(self, parent=None):
         super(NewCraftDialog, self).__init__(title="New Craft Calculation")
+
+        if parent != None:
+            self.delete_event_handler = None
+            self.set_parent(parent)
+            self.set_modal(True)
+        else:
+            self.delete_event_handler = self.connect("delete-event", Gtk.main_quit)
+
         self.set_wmclass("Minecraft Resource Calculator", "Minecraft Resource Calculator")
         self.set_default_size(350, -1)
         self.set_resizable(False)

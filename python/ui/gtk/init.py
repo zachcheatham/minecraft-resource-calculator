@@ -6,7 +6,6 @@ from ui.gtk.new_craft_dialog import NewCraftDialog
 
 def show_initial_window():
     window = NewCraftDialog()
-    window.connect("delete-event", Gtk.main_quit)
     window.show_all()
 
 def start_application():
