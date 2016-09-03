@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 import recipes
 from ui.gtk.recipe_dialog import RecipeDialog
@@ -10,7 +10,9 @@ class NewCraftDialog(Gtk.Window):
 
         if parent != None:
             self.delete_event_handler = None
-            self.set_parent(parent)
+            #self.set_parent(parent)
+            self.set_transient_for(parent)
+            self.set_type_hint(Gdk.WindowTypeHint.DIALOG)
             self.set_modal(True)
         else:
             self.delete_event_handler = self.connect("delete-event", Gtk.main_quit)
