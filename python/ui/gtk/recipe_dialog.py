@@ -144,7 +144,7 @@ class RecipeDialog(Gtk.Dialog):
 
     def add_button_clicked(self, btn):
         ingredient_name = self.item_name_entry.get_text()
-        quantity = self.quantity_spin_button.get_value()
+        quantity = int(self.quantity_spin_button.get_value())
 
         self.ingredients_store.append((ingredient_name, quantity))
         self.item_name_entry.set_text("")
@@ -164,7 +164,7 @@ class RecipeDialog(Gtk.Dialog):
         # Save recipe
         ingredients = {}
         if len(self.ingredients_store) > 0:
-            quantity_produced = self.quantity_produced_spin_button.get_value()
+            quantity_produced = int(self.quantity_produced_spin_button.get_value())
 
             it = self.ingredients_store.get_iter_first()
             while it != None:
