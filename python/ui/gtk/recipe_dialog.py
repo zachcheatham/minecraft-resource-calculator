@@ -1,5 +1,4 @@
 from gi.repository import Gtk
-from gi.repository import Gdk
 
 import recipes
 import util
