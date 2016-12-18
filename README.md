@@ -6,6 +6,7 @@ A resource calculating application for complicated recipes in modded Minecraft.
 ![New Craft](/../screenshots/new_craft.png?raw=true "New Craft")
 
 ![Creating a Recipe](/../screenshots/recipe_window.png?raw=true "Creating a Recipe")
+
 ![Craft Instructions](/../screenshots/craft_window.png?raw=true "Craft Instructions")
 
 ### Requirements
