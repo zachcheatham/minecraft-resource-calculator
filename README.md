@@ -13,6 +13,8 @@ A resource calculating application for complicated recipes in modded Minecraft.
 * Python 3
 * PyQT (QT Linux and Windows) or PyGObject (GTK3 Linux)
 
+(Windows users using the exe shouldn't have to download these)
+
 ### How To Run
 #### Windows
 You have the option of downloading the exe from the releases tab or following the instructions for Linux QT below.
