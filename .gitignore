@@ -2,6 +2,7 @@
 *.pyo
 recipes.json
 start_windows.bat
+start_gtk.sh
 dist/
 build.bat
 build/
