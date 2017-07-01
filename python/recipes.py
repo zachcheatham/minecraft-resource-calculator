@@ -1,9 +1,10 @@
 import json
 import os
-
+import time
 import util
 
 recipes = None
+last_edit = 0
 
 def save():
     with open("recipes.json", "w") as outfile:
@@ -11,6 +12,8 @@ def save():
         print ("DEBUG: Wrote recipes.json")
 
 def read():
+    global last_edit
+
     if os.path.exists("recipes.json"):
         print ("DEBUG: Opening recipes.json...")
         with open("recipes.json", "r") as infile:
@@ -19,15 +22,27 @@ def read():
     else:
         recipes = {}
 
+    last_edit = time.time()
+
+def get_last_edit():
+    global last_edit
+    return last_edit
+
 def set_recipe(item_name, ingredients=None, produced=-1):
     global recipes
+    global last_edit
 
     if ingredients == None:
         recipes[item_name] = None
     else:
         recipes[item_name] = {"r": ingredients, "p": produced}
 
+    last_edit = time.time()
     save()
+
+def recipe_exists(item_name):
+    global recipes
+    return item_name in recipes.keys()
 
 def have_missing(item_name):
     global recipes

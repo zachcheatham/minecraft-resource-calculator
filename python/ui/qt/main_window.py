@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QHeaderView
 
 import recipes
 import ui.qt.new_craft_dialog
+import ui.qt.recipe_list_dialog
 from ui.qt.designer.main_window import Ui_mainWindow
 
 class MainWindow(QMainWindow, Ui_mainWindow):
@@ -32,6 +33,10 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         self.actionAbout.triggered.connect(self.action_about)
 
     def set_craft_item(self, item_name, quantity):
+        self.craft_item_name = item_name
+        self.craft_quantity = quantity
+        self.recipes_version = recipes.get_last_edit()
+
         self.setWindowTitle("Minecraft Resource Calculator: {} x{}".format(item_name, quantity))
 
         for i in range(0, self.steps_model.rowCount()):
@@ -88,7 +93,13 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         self.close()
 
     def action_edit_recipe(self, checked):
-        pass
+        recipes_dialog = ui.qt.recipe_list_dialog.RecipeListDialog(self)
+        recipes_dialog.finished.connect(self.recipe_edit_finished)
+        recipes_dialog.show()
+
+    def recipe_edit_finished(self):
+        if self.recipes_version != recipes.get_last_edit():
+            self.set_craft_item(self.craft_item_name, self.craft_quantity)
 
     def action_expand_all(self, checked):
         self.stepsTreeView.expandAll()

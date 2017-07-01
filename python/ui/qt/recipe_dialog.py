@@ -33,8 +33,25 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
 
         self.title_label_format = self.titleLabel.text()
 
-        self.recipe_queue = recipes.get_missing_recipes(item_name)
+        editing_recipe = recipes.recipe_exists(item_name)
+
+        if editing_recipe:
+            self.recipe_queue = [item_name]
+        else:
+            self.recipe_queue = recipes.get_missing_recipes(item_name)
+
         self.next_recipe()
+        if editing_recipe:
+            recipe_data = recipes.get_recipe(item_name)
+            if recipe_data != None:
+                for ingredient, quantity in recipe_data["r"].items():
+                    ingredient = QStandardItem(ingredient)
+                    quantity = QStandardItem(str(quantity))
+                    self.ingredients_model.appendRow([ingredient, quantity])
+
+                self.quantityProducedSpinBox.setEnabled(True)
+                self.quantityProducedSpinBox.setValue(recipe_data["p"])
+                self.doneButton.setText("Done")
 
     def item_name_in_ingredients(self, item_name):
         for i in range(0, self.ingredients_model.rowCount()):
