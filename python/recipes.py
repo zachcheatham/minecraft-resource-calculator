@@ -36,6 +36,15 @@ def set_recipe(item_name, ingredients=None, produced=-1):
     last_edit = time.time()
     save()
 
+def remove_recipe(item_name):
+    global recipes
+    global last_edit
+
+    del recipes[item_name]
+
+    last_edit = time.time()
+    save()
+
 def recipe_exists(item_name):
     global recipes
     return item_name in recipes.keys()

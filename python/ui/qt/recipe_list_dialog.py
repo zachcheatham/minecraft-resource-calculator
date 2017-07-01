@@ -72,9 +72,15 @@ class RecipeListDialog(QDialog, Ui_recipeListDialog):
         self.deleteButton.setEnabled(True)
 
     def delete_button_clicked(self):
-        self.model.takeRow(self.recipesList.selectedIndexes()[0].row())
-        self.editButton.setEnabled(False)
-        self.deleteButton.setEnabled(False)
+        row = self.recipesList.selectedIndexes()[0].row()
+        index = self.model.index(row, 0)
+        recipes.remove_recipe(self.model.data(index))
+        self.recipes_version = recipes.get_last_edit()
+
+        self.model.takeRow(row)
+        if self.model.rowCount() == 0:
+            self.editButton.setEnabled(False)
+            self.deleteButton.setEnabled(False)
 
     def edit_button_clicked(self):
         self.edit_item(self.recipesList.selectedIndexes()[0])
