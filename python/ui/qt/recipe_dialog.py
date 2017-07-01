@@ -7,7 +7,7 @@ import util
 from ui.qt.designer.recipe_dialog import Ui_recipeDialog
 
 class RecipeDialog(QDialog, Ui_recipeDialog):
-    def __init__(self, item_name, parent=None):
+    def __init__(self, item_name, parent=None, editing_recipe=False):
         super(RecipeDialog, self).__init__(parent)
         self.setWindowFlags(self.windowFlags() & (~Qt.WindowContextHelpButtonHint))
         self.setAttribute(Qt.WA_DeleteOnClose)
@@ -32,8 +32,6 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
         self.doneButton.clicked.connect(self.done_button_clicked)
 
         self.title_label_format = self.titleLabel.text()
-
-        editing_recipe = recipes.recipe_exists(item_name)
 
         if editing_recipe:
             self.recipe_queue = [item_name]

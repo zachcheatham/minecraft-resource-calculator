@@ -84,7 +84,7 @@ class RecipeListDialog(QDialog, Ui_recipeListDialog):
         item_name = self.model.data(nameIndex)
         self.previously_selected = item_name
 
-        recipeDialog = RecipeDialog(item_name, self)
+        recipeDialog = RecipeDialog(item_name, self, True)
         recipeDialog.finished.connect(self.recipe_dialog_finished)
         recipeDialog.show()
 
