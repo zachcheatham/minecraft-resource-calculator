@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QDialog, QHeaderView
+from PyQt5.QtWidgets import QDialog, QHeaderView, QCompleter
 
 import recipes
 import util
@@ -26,7 +26,12 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
         header.setStretchLastSection(False)
         header.setSectionResizeMode(0, QHeaderView.Stretch)
 
+        self.completer = QCompleter(recipes.get_known_items(), self)
+        self.completer.setModelSorting(QCompleter.CaseSensitivelySortedModel)
+        self.completer.setCaseSensitivity(Qt.CaseInsensitive)
+        self.itemNameLineEdit.setCompleter(self.completer)
         self.itemNameLineEdit.textEdited.connect(self.item_name_line_edit_edited)
+
         self.addButton.clicked.connect(self.add_button_clicked)
         self.removeButton.clicked.connect(self.remove_button_clicked)
         self.doneButton.clicked.connect(self.done_button_clicked)
@@ -127,6 +132,8 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
         if len(ingredients) > 0:
             for ingredient, quantity in ingredients.items():
                 self.recipe_queue = util.merge_lists(recipes.get_missing_recipes(ingredient), self.recipe_queue)
+
+        # TODO: Add new item to completer
 
         # Refresh the gui
         if len(self.recipe_queue) > 0:

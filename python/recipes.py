@@ -24,10 +24,6 @@ def read():
 
     last_edit = time.time()
 
-def get_last_edit():
-    global last_edit
-    return last_edit
-
 def set_recipe(item_name, ingredients=None, produced=-1):
     global recipes
     global last_edit
@@ -56,6 +52,14 @@ def have_missing(item_name):
         return True
 
     return False
+
+def get_last_edit():
+    global last_edit
+    return last_edit
+
+def get_known_items():
+    global recipes
+    return recipes.keys()
 
 def get_missing_recipes(item_name):
     global recipes

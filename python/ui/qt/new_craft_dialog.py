@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog
+from PyQt5.QtWidgets import QDialog, QCompleter
 
 import recipes
 import ui.qt.window_manager
@@ -14,7 +14,12 @@ class NewCraftDialog(QDialog, Ui_newCraftDialog):
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setupUi(self)
 
+        completer = QCompleter(recipes.get_known_items(), self)
+        completer.setModelSorting(QCompleter.CaseSensitivelySortedModel)
+        completer.setCaseSensitivity(Qt.CaseInsensitive)
+        self.itemNameLineEdit.setCompleter(completer)
         self.itemNameLineEdit.textEdited.connect(self.item_name_line_edit_edited)
+
         self.calculateButton.clicked.connect(self.calculate_button_clicked)
         self.closeButton.clicked.connect(self.close_button_clicked)
 
