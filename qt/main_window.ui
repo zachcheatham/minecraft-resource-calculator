@@ -34,6 +34,7 @@
      <string>File</string>
     </property>
     <addaction name="actionNew_Craft"/>
+    <addaction name="actionNew_Craft_New_Window"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -87,6 +88,11 @@
   <action name="actionExpand_All">
    <property name="text">
     <string>Expand All</string>
+   </property>
+  </action>
+  <action name="actionNew_Craft_New_Window">
+   <property name="text">
+    <string>New Craft (New Window)...</string>
    </property>
   </action>
  </widget>

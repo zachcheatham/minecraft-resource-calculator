@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -45,7 +45,10 @@ class Ui_mainWindow(object):
         self.actionAbout.setObjectName("actionAbout")
         self.actionExpand_All = QtWidgets.QAction(mainWindow)
         self.actionExpand_All.setObjectName("actionExpand_All")
+        self.actionNew_Craft_New_Window = QtWidgets.QAction(mainWindow)
+        self.actionNew_Craft_New_Window.setObjectName("actionNew_Craft_New_Window")
         self.menuFile.addAction(self.actionNew_Craft)
+        self.menuFile.addAction(self.actionNew_Craft_New_Window)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuEdit.addAction(self.actionEditRecipe)
@@ -72,4 +75,5 @@ class Ui_mainWindow(object):
         self.actionEditRecipe.setToolTip(_translate("mainWindow", "Edit Recipe"))
         self.actionAbout.setText(_translate("mainWindow", "About"))
         self.actionExpand_All.setText(_translate("mainWindow", "Expand All"))
+        self.actionNew_Craft_New_Window.setText(_translate("mainWindow", "New Craft (New Window)..."))
 

@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QMainWindow, QHeaderView
 import recipes
 import ui.qt.new_craft_dialog
 import ui.qt.recipe_list_dialog
+import ui.qt.window_manager
 from ui.qt.designer.main_window import Ui_mainWindow
 
 class MainWindow(QMainWindow, Ui_mainWindow):
@@ -27,6 +28,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         header.setSectionResizeMode(1, QHeaderView.Interactive)
 
         self.actionNew_Craft.triggered.connect(self.action_new_craft)
+        self.actionNew_Craft_New_Window.triggered.connect(self.action_new_craft_new_window)
         self.actionQuit.triggered.connect(self.action_quit)
         self.actionEditRecipe.triggered.connect(self.action_edit_recipe)
         self.actionExpand_All.triggered.connect(self.action_expand_all)
@@ -88,6 +90,11 @@ class MainWindow(QMainWindow, Ui_mainWindow):
     def action_new_craft(self, checked):
         new_craft_dialog = ui.qt.new_craft_dialog.NewCraftDialog(self)
         new_craft_dialog.show()
+
+    def action_new_craft_new_window(self, checked):
+        new_craft_dialog = ui.qt.new_craft_dialog.NewCraftDialog()
+        new_craft_dialog.show()
+        ui.qt.window_manager.retain(new_craft_dialog)
 
     def action_quit(self, checked):
         self.close()
