@@ -6,6 +6,7 @@ import recipes
 import util
 from ui.qt.designer.recipe_dialog import Ui_recipeDialog
 
+
 class RecipeDialog(QDialog, Ui_recipeDialog):
     def __init__(self, item_name, parent=None, editing_recipe=False):
         super(RecipeDialog, self).__init__(parent)
@@ -37,6 +38,7 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
         self.doneButton.clicked.connect(self.done_button_clicked)
 
         self.title_label_format = self.titleLabel.text()
+        self.item_name = "Unknown"
 
         if editing_recipe:
             self.recipe_queue = [item_name]
@@ -46,7 +48,7 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
         self.next_recipe()
         if editing_recipe:
             recipe_data = recipes.get_recipe(item_name)
-            if recipe_data != None:
+            if recipe_data is not None:
                 for ingredient, quantity in recipe_data["r"].items():
                     ingredient = QStandardItem(ingredient)
                     quantity = QStandardItem(str(quantity))
@@ -80,7 +82,7 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
         else:
             self.addButton.setEnabled(False)
 
-    def ingredients_selection_changed(self, selected, deselected):
+    def ingredients_selection_changed(self, selected):
         if selected.count() > 0:
             self.removeButton.setEnabled(True)
         else:
@@ -110,7 +112,7 @@ class RecipeDialog(QDialog, Ui_recipeDialog):
             self.quantityProducedSpinBox.setEnabled(False)
             self.doneButton.setText("Raw Material")
 
-    def done_button_clicked(self, text):
+    def done_button_clicked(self):
         # Save recipe
         ingredients = {}
         if self.ingredients_model.rowCount() > 0:
